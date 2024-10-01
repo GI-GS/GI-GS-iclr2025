@@ -258,31 +258,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            We present GI-GS, a novel inverse rendering framework that leverages 3D Gaussian Splatting (3DGS) and deferred shading to achieve photo-realistic novel view
+            synthesis and relighting. In inverse rendering, accurately modeling the shading
+            processes of objects is essential for achieving high-fidelity results. Therefore, it
+            is critical to incorporate global illumination to account for indirect lighting that
+            reaches an object after multiple bounces across the scene. Previous 3DGS-based
+            methods have attempted to model indirect lighting by characterizing indirect illumination as learnable lighting volumes or additional attributes of each Gaussian,
+            while using baked occlusion to represent shadow effects. These methods, however, fail to accurately model the complex physical interactions between light and
+            objects, making it impossible to construct realistic indirect illumination during relighting. To address this limitation, we propose to calculate indirect lighting using
+            efficient path tracing with deferred shading. In our framework, we first render
+            a G-buffer to capture the detailed geometry and material properties of the scene.
+            Then, we perform physically-based rendering (PBR) only for direct lighting. With
+            the G-buffer and previous rendering results, the indirect lighting can be calculated through a lightweight path tracing. Our method effectively models indirect
+            lighting under any given lighting conditions, thereby achieving better novel view
+            synthesis and relighting. Quantitative and qualitative results show that our GI-GS
+            outperforms existing baselines in both rendering quality and efficiency.
           </p>
         </div>
       </div>
